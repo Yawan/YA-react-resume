@@ -4,7 +4,8 @@
 /*
 -----------------------------------------------------------------------------------*/
 
- jQuery(document).ready(function($) {
+ // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'jQuery'.
+ jQuery(document).ready(function($: any) {
 
 /*----------------------------------------------------*/
 /* FitText Settings
@@ -19,9 +20,11 @@
 /* Smooth Scrolling
 ------------------------------------------------------ */
 
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
    $('.smoothscroll').on('click',function (e) {
 	    e.preventDefault();
 
+// @ts-expect-error ts-migrate(2683) FIXME: 'this' implicitly has type 'any' because it does n... Remove this comment to see the full error message
 	    var target = this.hash,
 	    $target = $(target);
 
@@ -42,6 +45,7 @@
 
 	sections.waypoint({
 
+      // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'event' implicitly has an 'any' type.
       handler: function(event, direction) {
 
 		   var active_section;
@@ -112,6 +116,7 @@
 
     });
 
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
     $(document).on('click', '.popup-modal-dismiss', function (e) {
     		e.preventDefault();
     		$.magnificPopup.close();
@@ -154,6 +159,7 @@
 	      type: "POST",
 	      url: "inc/sendEmail.php",
 	      data: data,
+// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'msg' implicitly has an 'any' type.
 	      success: function(msg) {
 
             // Message was sent

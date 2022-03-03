@@ -7,7 +7,7 @@
 (function ($) {
 
   //FlexSlider: Object Instance
-  $.flexslider = function(el, options) {
+  $.flexslider = function(el: any, options: any) {
     var slider = $(el);
 
     // making variables public
@@ -15,12 +15,13 @@
 
     var namespace = slider.vars.namespace,
         msGesture = window.navigator && window.navigator.msPointerEnabled && window.MSGesture,
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'DocumentTouch' does not exist on type 'W... Remove this comment to see the full error message
         touch = (( "ontouchstart" in window ) || msGesture || window.DocumentTouch && document instanceof DocumentTouch) && slider.vars.touch,
         // depricating this idea, as devices are being released with both of these events
         //eventType = (touch) ? "touchend" : "click",
         eventType = "click touchend MSPointerUp",
         watchedEvent = "",
-        watchedEventClearTimer,
+        watchedEventClearTimer: any,
         vertical = slider.vars.direction === "vertical",
         reverse = slider.vars.reverse,
         carousel = (slider.vars.itemWidth > 0),
@@ -62,6 +63,7 @@
           var obj = document.createElement('div'),
               props = ['perspectiveProperty', 'WebkitPerspective', 'MozPerspective', 'OPerspective', 'msPerspective'];
           for (var i in props) {
+            // @ts-expect-error ts-migrate(7015) FIXME: Element implicitly has an 'any' type because index... Remove this comment to see the full error message
             if ( obj.style[ props[i] ] !== undefined ) {
               slider.pfx = props[i].replace('Perspective','').toLowerCase();
               slider.prop = "-" + slider.pfx + "-transform";
@@ -87,14 +89,16 @@
         slider.setup("init");
 
         // CONTROLNAV:
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
         if (slider.vars.controlNav) methods.controlNav.setup();
 
         // DIRECTIONNAV:
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'directionNav' does not exist on type '{}... Remove this comment to see the full error message
         if (slider.vars.directionNav) methods.directionNav.setup();
 
         // KEYBOARD:
         if (slider.vars.keyboard && ($(slider.containerSelector).length === 1 || slider.vars.multipleKeyboard)) {
-          $(document).bind('keyup', function(event) {
+          $(document).bind('keyup', function(event: any) {
             var keycode = event.keyCode;
             if (!slider.animating && (keycode === 39 || keycode === 37)) {
               var target = (keycode === 39) ? slider.getTarget('next') :
@@ -105,7 +109,7 @@
         }
         // MOUSEWHEEL:
         if (slider.vars.mousewheel) {
-          slider.bind('mousewheel', function(event, delta, deltaX, deltaY) {
+          slider.bind('mousewheel', function(event: any, delta: any, deltaX: any, deltaY: any) {
             event.preventDefault();
             var target = (delta < 0) ? slider.getTarget('next') : slider.getTarget('prev');
             slider.flexAnimate(target, slider.vars.pauseOnAction);
@@ -113,9 +117,11 @@
         }
 
         // PAUSEPLAY
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'pausePlay' does not exist on type '{}'.
         if (slider.vars.pausePlay) methods.pausePlay.setup();
 
         //PAUSE WHEN INVISIBLE
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'pauseInvisible' does not exist on type '... Remove this comment to see the full error message
         if (slider.vars.slideshow && slider.vars.pauseInvisible) methods.pauseInvisible.init();
 
         // SLIDSESHOW
@@ -129,18 +135,22 @@
           }
           // initialize animation
           //If we're visible, or we don't use PageVisibility API
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'pauseInvisible' does not exist on type '... Remove this comment to see the full error message
           if(!slider.vars.pauseInvisible || !methods.pauseInvisible.isHidden()) {
             (slider.vars.initDelay > 0) ? slider.startTimeout = setTimeout(slider.play, slider.vars.initDelay) : slider.play();
           }
         }
 
         // ASNAV:
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'asNav' does not exist on type '{}'.
         if (asNav) methods.asNav.setup();
 
         // TOUCH
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'touch' does not exist on type '{}'.
         if (touch && slider.vars.touch) methods.touch();
 
         // FADE&&SMOOTHHEIGHT || SLIDE:
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'resize' does not exist on type '{}'.
         if (!fade || (fade && slider.vars.smoothHeight)) $(window).bind("resize orientationchange focus", methods.resize);
 
         slider.find("img").attr("draggable", "false");
@@ -157,7 +167,7 @@
           slider.currentItem = slider.currentSlide;
           slider.slides.removeClass(namespace + "active-slide").eq(slider.currentItem).addClass(namespace + "active-slide");
           if(!msGesture){
-              slider.slides.click(function(e){
+              slider.slides.click(function(this: any, e: any) {
                 e.preventDefault();
                 var $slide = $(this),
                     target = $slide.index();
@@ -171,16 +181,16 @@
               });
           }else{
               el._slider = slider;
-              slider.slides.each(function (){
+              slider.slides.each(function(this: any) {
                   var that = this;
                   that._gesture = new MSGesture();
                   that._gesture.target = that;
-                  that.addEventListener("MSPointerDown", function (e){
+                  that.addEventListener("MSPointerDown", function (e: any){
                       e.preventDefault();
                       if(e.currentTarget._gesture)
                           e.currentTarget._gesture.addPointer(e.pointerId);
                   }, false);
-                  that.addEventListener("MSGestureTap", function (e){
+                  that.addEventListener("MSGestureTap", function(this: any, e: any) {
                       e.preventDefault();
                       var $slide = $(this),
                           target = $slide.index();
@@ -196,8 +206,10 @@
       controlNav: {
         setup: function() {
           if (!slider.manualControls) {
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
             methods.controlNav.setupPaging();
           } else { // MANUALCONTROLS:
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
             methods.controlNav.setupManual();
           }
         },
@@ -224,11 +236,13 @@
 
           // CONTROLSCONTAINER:
           (slider.controlsContainer) ? $(slider.controlsContainer).append(slider.controlNavScaffold) : slider.append(slider.controlNavScaffold);
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
           methods.controlNav.set();
 
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
           methods.controlNav.active();
 
-          slider.controlNavScaffold.delegate('a, img', eventType, function(event) {
+          slider.controlNavScaffold.delegate('a, img', eventType, function(this: any, event: any) {
             event.preventDefault();
 
             if (watchedEvent === "" || watchedEvent === event.type) {
@@ -245,15 +259,17 @@
             if (watchedEvent === "") {
               watchedEvent = event.type;
             }
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'setToClearWatchedEvent' does not exist o... Remove this comment to see the full error message
             methods.setToClearWatchedEvent();
 
           });
         },
         setupManual: function() {
           slider.controlNav = slider.manualControls;
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
           methods.controlNav.active();
 
-          slider.controlNav.bind(eventType, function(event) {
+          slider.controlNav.bind(eventType, function(this: any, event: any) {
             event.preventDefault();
 
             if (watchedEvent === "" || watchedEvent === event.type) {
@@ -270,6 +286,7 @@
             if (watchedEvent === "") {
               watchedEvent = event.type;
             }
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'setToClearWatchedEvent' does not exist o... Remove this comment to see the full error message
             methods.setToClearWatchedEvent();
           });
         },
@@ -280,7 +297,7 @@
         active: function() {
           slider.controlNav.removeClass(namespace + "active").eq(slider.animatingTo).addClass(namespace + "active");
         },
-        update: function(action, pos) {
+        update: function(action: any, pos: any) {
           if (slider.pagingCount > 1 && action === "add") {
             slider.controlNavScaffold.append($('<li><a>' + slider.count + '</a></li>'));
           } else if (slider.pagingCount === 1) {
@@ -288,7 +305,9 @@
           } else {
             slider.controlNav.eq(pos).closest('li').remove();
           }
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
           methods.controlNav.set();
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
           (slider.pagingCount > 1 && slider.pagingCount !== slider.controlNav.length) ? slider.update(pos, action) : methods.controlNav.active();
         }
       },
@@ -305,9 +324,10 @@
             slider.directionNav = $('.' + namespace + 'direction-nav li a', slider);
           }
 
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'directionNav' does not exist on type '{}... Remove this comment to see the full error message
           methods.directionNav.update();
 
-          slider.directionNav.bind(eventType, function(event) {
+          slider.directionNav.bind(eventType, function(this: any, event: any) {
             event.preventDefault();
             var target;
 
@@ -320,6 +340,7 @@
             if (watchedEvent === "") {
               watchedEvent = event.type;
             }
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'setToClearWatchedEvent' does not exist o... Remove this comment to see the full error message
             methods.setToClearWatchedEvent();
           });
         },
@@ -353,9 +374,10 @@
             slider.pausePlay = $('.' + namespace + 'pauseplay a', slider);
           }
 
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'pausePlay' does not exist on type '{}'.
           methods.pausePlay.update((slider.vars.slideshow) ? namespace + 'pause' : namespace + 'play');
 
-          slider.pausePlay.bind(eventType, function(event) {
+          slider.pausePlay.bind(eventType, function(this: any, event: any) {
             event.preventDefault();
 
             if (watchedEvent === "" || watchedEvent === event.type) {
@@ -374,20 +396,21 @@
             if (watchedEvent === "") {
               watchedEvent = event.type;
             }
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'setToClearWatchedEvent' does not exist o... Remove this comment to see the full error message
             methods.setToClearWatchedEvent();
           });
         },
-        update: function(state) {
+        update: function(state: any) {
           (state === "play") ? slider.pausePlay.removeClass(namespace + 'pause').addClass(namespace + 'play').html(slider.vars.playText) : slider.pausePlay.removeClass(namespace + 'play').addClass(namespace + 'pause').html(slider.vars.pauseText);
         }
       },
       touch: function() {
-        var startX,
-          startY,
-          offset,
-          cwidth,
-          dx,
-          startT,
+        var startX: any,
+          startY: any,
+          offset: any,
+          cwidth: any,
+          dx: any,
+          startT: any,
           scrolling = false,
           localX = 0,
           localY = 0,
@@ -396,7 +419,7 @@
         if(!msGesture){
             el.addEventListener('touchstart', onTouchStart, false);
 
-            function onTouchStart(e) {
+            function onTouchStart(e: any) {
               if (slider.animating) {
                 e.preventDefault();
               } else if ( ( window.navigator.msPointerEnabled ) || e.touches.length === 1 ) {
@@ -423,7 +446,7 @@
               }
             }
 
-            function onTouchMove(e) {
+            function onTouchMove(e: any) {
               // Local vars for X and Y points.
 
               localX = e.touches[0].pageX;
@@ -445,7 +468,7 @@
               }
             }
 
-            function onTouchEnd(e) {
+            function onTouchEnd(e: any) {
               // finish the touch by undoing the touch session
               el.removeEventListener('touchmove', onTouchMove, false);
 
@@ -475,7 +498,7 @@
             el.addEventListener("MSGestureChange", onMSGestureChange, false);
             el.addEventListener("MSGestureEnd", onMSGestureEnd, false);
 
-            function onMSPointerDown(e){
+            function onMSPointerDown(e: any){
                 e.stopPropagation();
                 if (slider.animating) {
                     e.preventDefault();
@@ -495,7 +518,7 @@
                 }
             }
 
-            function onMSGestureChange(e) {
+            function onMSGestureChange(e: any) {
                 e.stopPropagation();
                 var slider = e.target._slider;
                 if(!slider){
@@ -510,6 +533,7 @@
                 scrolling = (vertical) ? (Math.abs(accDx) < Math.abs(-transX)) : (Math.abs(accDx) < Math.abs(-transY));
 
                 if(e.detail === e.MSGESTURE_FLAG_INERTIA){
+                    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'setImmediate'.
                     setImmediate(function (){
                         el._gesture.stop();
                     });
@@ -528,7 +552,7 @@
                 }
             }
 
-            function onMSGestureEnd(e) {
+            function onMSGestureEnd(e: any) {
                 e.stopPropagation();
                 var slider = e.target._slider;
                 if(!slider){
@@ -559,6 +583,7 @@
 
           if (fade) {
             // SMOOTH HEIGHT:
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'smoothHeight' does not exist on type '{}... Remove this comment to see the full error message
             methods.smoothHeight();
           } else if (carousel) { //CAROUSEL:
             slider.slides.width(slider.computedW);
@@ -570,19 +595,20 @@
             slider.setProps(slider.h, "setTotal");
           } else {
             // SMOOTH HEIGHT:
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'smoothHeight' does not exist on type '{}... Remove this comment to see the full error message
             if (slider.vars.smoothHeight) methods.smoothHeight();
             slider.newSlides.width(slider.computedW);
             slider.setProps(slider.computedW, "setTotal");
           }
         }
       },
-      smoothHeight: function(dur) {
+      smoothHeight: function(dur: any) {
         if (!vertical || fade) {
           var $obj = (fade) ? slider : slider.viewport;
           (dur) ? $obj.animate({"height": slider.slides.eq(slider.animatingTo).height()}, dur) : $obj.height(slider.slides.eq(slider.animatingTo).height());
         }
       },
-      sync: function(action) {
+      sync: function(action: any) {
         var $obj = $(slider.vars.sync).data("flexslider"),
             target = slider.animatingTo;
 
@@ -600,11 +626,16 @@
           if ('hidden' in document) return 'hidden';
           for (var i = 0; i < prefixes.length; i++) {
             if ((prefixes[i] + 'Hidden') in document) 
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'pauseInvisible' does not exist on type '... Remove this comment to see the full error message
             methods.pauseInvisible.visProp = prefixes[i] + 'Hidden';
           }
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'pauseInvisible' does not exist on type '... Remove this comment to see the full error message
           if (methods.pauseInvisible.visProp) {
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'pauseInvisible' does not exist on type '... Remove this comment to see the full error message
             var evtname = methods.pauseInvisible.visProp.replace(/[H|h]idden/,'') + 'visibilitychange';
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'addEventListener' does not exist on type... Remove this comment to see the full error message
             document.addEventListener(evtname, function() {
+              // @ts-expect-error ts-migrate(2339) FIXME: Property 'pauseInvisible' does not exist on type '... Remove this comment to see the full error message
               if (methods.pauseInvisible.isHidden()) {
                 if(slider.startTimeout) clearTimeout(slider.startTimeout); //If clock is ticking, stop timer and prevent from starting while invisible
                 else slider.pause(); //Or just pause
@@ -617,6 +648,7 @@
           }       
         },
         isHidden: function() {
+          // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
           return document[methods.pauseInvisible.visProp] || false;
         }
       },
@@ -629,7 +661,7 @@
     }
 
     // public methods
-    slider.flexAnimate = function(target, pause, override, withSync, fromNav) {
+    slider.flexAnimate = function(target: any, pause: any, override: any, withSync: any, fromNav: any) {
       if (!slider.vars.animationLoop && target !== slider.currentSlide) {
         slider.direction = (target > slider.currentSlide) ? "next" : "prev";
       }
@@ -665,9 +697,11 @@
         slider.vars.before(slider);
 
         // SYNC:
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'sync' does not exist on type '{}'.
         if (slider.syncExists && !fromNav) methods.sync("animate");
 
         // CONTROLNAV
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
         if (slider.vars.controlNav) methods.controlNav.active();
 
         // !CAROUSEL:
@@ -679,6 +713,7 @@
         slider.atEnd = target === 0 || target === slider.last;
 
         // DIRECTIONNAV:
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'directionNav' does not exist on type '{}... Remove this comment to see the full error message
         if (slider.vars.directionNav) methods.directionNav.update();
 
         if (target === slider.last) {
@@ -736,10 +771,11 @@
           }
         }
         // SMOOTH HEIGHT:
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'smoothHeight' does not exist on type '{}... Remove this comment to see the full error message
         if (slider.vars.smoothHeight) methods.smoothHeight(slider.vars.animationSpeed);
       }
     }
-    slider.wrapup = function(dimension) {
+    slider.wrapup = function(dimension: any) {
       // SLIDE:
       if (!fade && !carousel) {
         if (slider.currentSlide === 0 && slider.animatingTo === slider.last && slider.vars.animationLoop) {
@@ -764,8 +800,10 @@
       slider.animatedSlides = null;
       slider.playing = false;
       // PAUSEPLAY:
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'pausePlay' does not exist on type '{}'.
       if (slider.vars.pausePlay) methods.pausePlay.update("play");
       // SYNC:
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sync' does not exist on type '{}'.
       if (slider.syncExists) methods.sync("pause");
     }
     // SLIDESHOW:
@@ -774,8 +812,10 @@
       slider.animatedSlides = slider.animatedSlides || setInterval(slider.animateSlides, slider.vars.slideshowSpeed);
       slider.started = slider.playing = true;
       // PAUSEPLAY:
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'pausePlay' does not exist on type '{}'.
       if (slider.vars.pausePlay) methods.pausePlay.update("pause");
       // SYNC:
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'sync' does not exist on type '{}'.
       if (slider.syncExists) methods.sync("play");
     }
     // STOP:
@@ -783,7 +823,7 @@
       slider.pause();
       slider.stopped = true;
     }
-    slider.canAdvance = function(target, fromNav) {
+    slider.canAdvance = function(target: any, fromNav: any) {
       // ASNAV:
       var last = (asNav) ? slider.pagingCount - 1 : slider.last;
       return (fromNav) ? true :
@@ -795,7 +835,7 @@
              (slider.atEnd && slider.currentSlide === last && target === 0 && slider.direction === "next") ? false :
              true;
     }
-    slider.getTarget = function(dir) {
+    slider.getTarget = function(dir: any) {
       slider.direction = dir;
       if (dir === "next") {
         return (slider.currentSlide === slider.last) ? 0 : slider.currentSlide + 1;
@@ -805,7 +845,7 @@
     }
 
     // SLIDE:
-    slider.setProps = function(pos, special, dur) {
+    slider.setProps = function(pos: any, special: any, dur: any) {
       var target = (function() {
         var posCheck = (pos) ? pos : ((slider.itemW + slider.vars.itemMargin) * slider.move) * slider.animatingTo,
             posCalc = (function() {
@@ -838,10 +878,10 @@
       if (slider.transitions || dur === undefined) slider.container.css(slider.args);
     }
 
-    slider.setup = function(type) {
+    slider.setup = function(type: any) {
       // SLIDE:
       if (!fade) {
-        var sliderOffset, arr;
+        var sliderOffset: any, arr;
 
         if (type === "init") {
           slider.viewport = $('<div class="' + namespace + 'viewport"></div>').css({"overflow": "hidden", "position": "relative"}).appendTo(slider).append(slider.container);
@@ -882,6 +922,7 @@
             slider.doMath();
             slider.newSlides.css({"width": slider.computedW, "float": "left", "display": "block"});
             // SMOOTH HEIGHT:
+            // @ts-expect-error ts-migrate(2339) FIXME: Property 'smoothHeight' does not exist on type '{}... Remove this comment to see the full error message
             if (slider.vars.smoothHeight) methods.smoothHeight();
           }, (type === "init") ? 100 : 0);
         }
@@ -896,6 +937,7 @@
           }
         }
         // SMOOTH HEIGHT:
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'smoothHeight' does not exist on type '{}... Remove this comment to see the full error message
         if (slider.vars.smoothHeight) methods.smoothHeight();
       }
       // !CAROUSEL:
@@ -938,7 +980,7 @@
     }
 
 
-    slider.update = function(pos, action) {
+    slider.update = function(pos: any, action: any) {
       slider.doMath();
 
       // update currentSlide and slider.animatingTo if necessary
@@ -954,21 +996,24 @@
       // update controlNav
       if (slider.vars.controlNav && !slider.manualControls) {
         if ((action === "add" && !carousel) || slider.pagingCount > slider.controlNav.length) {
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
           methods.controlNav.update("add");
         } else if ((action === "remove" && !carousel) || slider.pagingCount < slider.controlNav.length) {
           if (carousel && slider.currentSlide > slider.last) {
             slider.currentSlide -= 1;
             slider.animatingTo -= 1;
           }
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'controlNav' does not exist on type '{}'.
           methods.controlNav.update("remove", slider.last);
         }
       }
       // update directionNav
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'directionNav' does not exist on type '{}... Remove this comment to see the full error message
       if (slider.vars.directionNav) methods.directionNav.update();
 
     }
 
-    slider.addSlide = function(obj, pos) {
+    slider.addSlide = function(obj: any, pos: any) {
       var $obj = $(obj);
 
       slider.count += 1;
@@ -992,7 +1037,7 @@
       //FlexSlider: added() Callback
       slider.vars.added(slider);
     }
-    slider.removeSlide = function(obj) {
+    slider.removeSlide = function(obj: any) {
       var pos = (isNaN(obj)) ? slider.slides.index($(obj)) : obj;
 
       // update count
@@ -1020,13 +1065,16 @@
     }
 
     //FlexSlider: Initialize
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'init' does not exist on type '{}'.
     methods.init();
   }
 
   // Ensure the slider isn't focussed if the window loses focus.
-  $( window ).blur( function ( e ) {
+  $( window ).blur( function ( e: any ) {
+    // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'focused'. Did you mean 'focus'?
     focused = false;
-  }).focus( function ( e ) {
+  }).focus( function ( e: any ) {
+    // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'focused'. Did you mean 'focus'?
     focused = true;
   });
 
@@ -1095,11 +1143,11 @@
 
 
   //FlexSlider: Plugin Function
-  $.fn.flexslider = function(options) {
+  $.fn.flexslider = function(options: any) {
     if (options === undefined) options = {};
 
     if (typeof options === "object") {
-      return this.each(function() {
+      return this.each(function(this: any) {
         var $this = $(this),
             selector = (options.selector) ? options.selector : ".slides > li",
             $slides = $this.find(selector);
@@ -1125,4 +1173,5 @@
       }
     }
   }
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'jQuery'.
 })(jQuery);

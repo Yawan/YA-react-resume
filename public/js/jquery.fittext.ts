@@ -11,7 +11,7 @@
 
 (function( $ ){
 
-  $.fn.fitText = function( kompressor, options ) {
+  $.fn.fitText = function( kompressor: any, options: any ) {
 
     // Setup options
     var compressor = kompressor || 1,
@@ -20,7 +20,7 @@
           'maxFontSize' : Number.POSITIVE_INFINITY
         }, options);
 
-    return this.each(function(){
+    return this.each(function(this: any) {
 
       // Store the object
       var $this = $(this);
@@ -40,4 +40,5 @@
 
   };
 
+// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'jQuery'.
 })( jQuery );
