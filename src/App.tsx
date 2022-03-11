@@ -1,80 +1,73 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
-import React, { Component } from 'react';
-import ReactGA from 'react-ga';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'jque... Remove this comment to see the full error message
-import $ from 'jquery';
-import './App.css';
-// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/Header' was resolved to '/Use... Remove this comment to see the full error message
-import Header from './Components/Header';
-// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/Footer' was resolved to '/Use... Remove this comment to see the full error message
-import Footer from './Components/Footer';
-// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/About' was resolved to '/User... Remove this comment to see the full error message
-import About from './Components/About';
-// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/Resume' was resolved to '/Use... Remove this comment to see the full error message
-import Resume from './Components/Resume';
-// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/Contact' was resolved to '/Us... Remove this comment to see the full error message
-import Contact from './Components/Contact';
-// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/Testimonials' was resolved to... Remove this comment to see the full error message
-import Testimonials from './Components/Testimonials';
-// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/Portfolio' was resolved to '/... Remove this comment to see the full error message
-import Portfolio from './Components/Portfolio';
+// import $ from 'jquery'
+import React, { Component } from 'react'
+import ReactGA from 'react-ga'
+import './App.css'
+import About from './Components/About'
+import Contact from './Components/Contact'
+import { ResumeData } from './Components/dataAPI'
+import Footer from './Components/Footer'
+import Header from './Components/Header'
+import Portfolio from './Components/Portfolio'
+import Resume from './Components/Resume'
+import Testimonials from './Components/Testimonials'
+type Props = {}
 
-class App extends Component {
-  state: any;
+type State = {
+  resumeData?: ResumeData
+}
 
-  constructor(props: any){
-    super(props);
-    this.state = {
-      foo: 'bar',
-      resumeData: {}
-    };
+class App extends Component<Props, State> {
+  // state = {}
+  constructor(props: any) {
+    super(props)
+    this.state = {}
 
-    ReactGA.initialize('UA-110570651-1');
-    ReactGA.pageview(window.location.pathname);
-
+    ReactGA.initialize('UA-110570651-1')
+    ReactGA.pageview(window.location.pathname)
   }
 
-  getResumeData(){
-    $.ajax({
-      url:'/resumeData.json',
-      dataType:'json',
-      cache: false,
-      success: function(this: any, data: any) {
-        this.setState({resumeData: data});
-      }.bind(this),
-      error: function(xhr: any, status: any, err: any){
-        console.log(err);
-        alert(err);
-      }
-    });
+  getResumeData() {
+    fetch('/resumeData.json', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((json) => {
+        /* Here is your json */
+        console.log(json)
+        this.setState({ resumeData: json as ResumeData })
+      })
+      .catch((error) => {
+        console.log(error)
+        /*Handle error*/
+      })
   }
 
-  componentDidMount(){
-    this.getResumeData();
+  componentDidMount() {
+    this.getResumeData()
   }
 
   render() {
-    return (
-      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
+    console.log('render', this.state)
+    const { resumeData } = this.state
+    return resumeData ? (
       <div className="App">
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <Header data={this.state.resumeData.main}/>
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <About data={this.state.resumeData.main}/>
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <Resume data={this.state.resumeData.resume}/>
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <Portfolio data={this.state.resumeData.portfolio}/>
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <Testimonials data={this.state.resumeData.testimonials}/>
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <Contact data={this.state.resumeData.main}/>
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-        <Footer data={this.state.resumeData.main}/>
-      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
+        <Header data={resumeData.main} />
+        <About data={resumeData.main} />
+        <Resume data={resumeData.resume} />
+        <Portfolio data={resumeData.portfolio} />
+        <Testimonials data={resumeData.testimonials} />
+        <Contact data={resumeData.main} />
+        <Footer data={resumeData.main} />
       </div>
-    );
+    ) : (
+      <div>Something wrong</div>
+    )
   }
 }
 
-export default App;
+export default App

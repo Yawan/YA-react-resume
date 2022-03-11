@@ -1,50 +1,53 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
-import React, { Component } from 'react';
+import { Component } from 'react'
+import { MainData, SocialInfoProps } from './dataAPI'
 
-class Footer extends Component {
-  props: any;
+type Props = {
+  data: MainData
+}
+
+type State = {}
+
+class Footer extends Component<Props, State> {
   render() {
+    const { social } = this.props.data
 
-    if(this.props.data){
-      var networks= this.props.data.social.map(function(network: any){
-        // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-        return <li key={network.name}><a href={network.url}><i className={network.className}></i></a></li>
-      })
-    }
+    const socialLinks = social.map((network: SocialInfoProps) => {
+      return (
+        <li key={network.name}>
+          <a href={network.url}>
+            <i className={network.className}></i>
+          </a>
+        </li>
+      )
+    })
 
     return (
-      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       <footer>
+        <div className="row">
+          <div className="twelve columns">
+            <ul className="social-links">{socialLinks}</ul>
 
-     // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-     <div className="row">
-        // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-        <div className="twelve columns">
-           // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-           <ul className="social-links">
-              {networks}
-           // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-           </ul>
+            <ul className="copyright">
+              <li>&copy; Copyright 2022 J.S</li>
 
-           // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-           <ul className="copyright">
-              // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-              <li>&copy; Copyright 2017 Tim Baker</li>
-              // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-              <li>Design by <a title="Styleshout" href="http://www.styleshout.com/">Styleshout</a></li>
-           // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-           </ul>
+              <li>
+                Design by{' '}
+                <a title="Styleshout" href="http://www.styleshout.com/">
+                  Styleshout
+                </a>
+              </li>
+            </ul>
+          </div>
 
-        // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
+          <div id="go-top">
+            <a className="smoothscroll" title="Back to Top" href="#home">
+              <i className="icon-up-open"></i>
+            </a>
+          </div>
         </div>
-        // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-        <div id="go-top"><a className="smoothscroll" title="Back to Top" href="#home"><i className="icon-up-open"></i></a></div>
-     // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-     </div>
-  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
-  </footer>
-    );
+      </footer>
+    )
   }
 }
 
-export default Footer;
+export default Footer
