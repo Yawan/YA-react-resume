@@ -129,6 +129,10 @@ header .scrolldown a:hover {
   color: #11abb0;
 }
 
+.scroll-to {
+  cursor: pointer;
+}
+
 /* primary navigation
 --------------------------------------------------------------------- */
 #nav-wrap ul,
