@@ -34,7 +34,7 @@ class Header extends Component<Props, State> {
           </a>
 
           <ul id="nav" className="nav">
-            <li className="current">
+            <li className="nav-item">
               <ScrollTo toId="home" toRef={undefined} duration={1000}>
                 <a className="smoothscroll" href="#home">
                   Home
@@ -42,7 +42,7 @@ class Header extends Component<Props, State> {
               </ScrollTo>
             </li>
 
-            <li>
+            <li className="nav-item">
               <ScrollTo toId="about" toRef={undefined} duration={1000}>
                 <a className="smoothscroll" href="#about">
                   About
@@ -50,7 +50,7 @@ class Header extends Component<Props, State> {
               </ScrollTo>
             </li>
 
-            <li>
+            <li className="nav-item">
               <ScrollTo toId="resume" toRef={undefined}>
                 <a className="smoothscroll" href="#resume">
                   Resume
@@ -58,7 +58,7 @@ class Header extends Component<Props, State> {
               </ScrollTo>
             </li>
 
-            <li>
+            <li className="nav-item">
               <ScrollTo toId="portfolio" toRef={undefined} duration={1000}>
                 <a className="smoothscroll" href="#portfolio">
                   Works
@@ -66,7 +66,7 @@ class Header extends Component<Props, State> {
               </ScrollTo>
             </li>
 
-            <li>
+            <li className="nav-item">
               <ScrollTo toId="testimonials" toRef={undefined} duration={1000}>
                 <a className="smoothscroll" href="#testimonials">
                   Testimonials
@@ -74,7 +74,7 @@ class Header extends Component<Props, State> {
               </ScrollTo>
             </li>
 
-            <li>
+            <li className="nav-item">
               <ScrollTo toId="contact" toRef={undefined} duration={1000}>
                 <a className="smoothscroll" href="#contact">
                   Contact
