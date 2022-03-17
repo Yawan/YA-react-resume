@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { MainData, SocialInfoProps } from './dataAPI'
+import ScrollTo from './ScrollToButton'
 
 type Props = {
   data: MainData
@@ -40,9 +41,11 @@ class Footer extends Component<Props, State> {
           </div>
 
           <div id="go-top">
-            <a className="smoothscroll" title="Back to Top" href="#home">
-              <i className="icon-up-open"></i>
-            </a>
+            <ScrollTo toId="home" toRef={undefined} duration={3000}>
+              <a className="smoothscroll" title="Back to Top" href="#home">
+                <i className="icon-up-open"></i>
+              </a>
+            </ScrollTo>
           </div>
         </div>
       </footer>

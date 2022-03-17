@@ -17,18 +17,6 @@ type State = {
   observer?: IntersectionObserver
 }
 
-const buildThresholdList = () => {
-  let thresholds = []
-  let numSteps = 20
-
-  for (let i = 1.0; i <= numSteps; i++) {
-    let ratio = i / numSteps
-    thresholds.push(ratio)
-  }
-
-  thresholds.push(0)
-  return thresholds
-}
 class App extends Component<Props, State> {
   constructor(props: any) {
     super(props)
@@ -64,62 +52,54 @@ class App extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    this.initObserver()
+    if (!this.state.observer) {
+      this.initObserver()
+    }
   }
 
   private initObserver() {
-    if (!this.state.observer) {
-      const navItems = document.querySelectorAll('.nav-item')
-      const sections = document.querySelector('.App')!.childNodes
+    const navItems = document.querySelectorAll('.nav-item')
+    const sections = document.querySelector('.App')!.childNodes
 
-      const sectionElements = Object.values(sections) as HTMLElement[]
-      let ratioByElementId = new Map()
-      // const thresholdList = buildThresholdList()
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            let prevRatio = ratioByElementId.get(entry.target.id) || 0
-            entry.target.id &&
-              ratioByElementId.set(entry.target.id, entry.intersectionRatio)
+    const sectionElements = Object.values(sections) as HTMLElement[]
+    let ratioByElementId = new Map()
+    // const thresholdList = buildThresholdList()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          let prevRatio = ratioByElementId.get(entry.target.id) || 0
+          entry.target.id &&
+            ratioByElementId.set(entry.target.id, entry.intersectionRatio)
 
-            // the ratio is increasing and more then 20% of rootMargin
-            if (
-              entry.intersectionRatio > prevRatio &&
-              entry.intersectionRatio > 0.2
-            ) {
-              // console.log(prevRatio)
-              // console.log(
-              //   entry.target.id,
-              //   entry,
-              //   'ratio',
-              //   entry.intersectionRatio
-              // )
-              const currentSection = entry.target
-              const currentIndex = sectionElements?.findIndex(
-                (el) => el === currentSection
-              )
+          // the ratio is increasing and more then 20% of rootMargin
+          if (
+            entry.intersectionRatio > prevRatio &&
+            entry.intersectionRatio > 0.2
+          ) {
+            const currentSection = entry.target
+            const currentIndex = sectionElements?.findIndex(
+              (el) => el === currentSection
+            )
 
-              // update the status of navbar.
-              navItems.forEach((navItem, index) => {
-                index === currentIndex
-                  ? navItem.classList.toggle('current', true)
-                  : navItem.classList.toggle('current', false)
-              })
-            }
-          })
-        },
-        {
-          // threshold: thresholdList,
-          threshold: [0.2, 0.3, 0.8, 0.9],
-          // skip footer from triggering
-          rootMargin: '0px 0px -33% 0px',
-        }
-      )
-      for (const childEl of sectionElements) {
-        observer.observe(childEl)
+            // update the status of navbar.
+            navItems.forEach((navItem, index) => {
+              index === currentIndex
+                ? navItem.classList.toggle('current', true)
+                : navItem.classList.toggle('current', false)
+            })
+          }
+        })
+      },
+      {
+        threshold: [0.2, 0.3, 0.8, 0.9],
+        // only focus on the upper side.
+        rootMargin: '0px 0px -25% 0px',
       }
-      this.setState({ observer })
+    )
+    for (const section of sectionElements) {
+      section.id && observer.observe(section)
     }
+    this.setState({ observer })
   }
 
   render() {
