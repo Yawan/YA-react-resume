@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { MainData } from './dataAPI'
+import ScrollTo from './ScrollToButton'
 
 type Props = {
   data: MainData
@@ -33,40 +34,52 @@ class Header extends Component<Props, State> {
           </a>
 
           <ul id="nav" className="nav">
-            <li className="current">
-              <a className="smoothscroll" href="#home">
-                Home
-              </a>
+            <li className="nav-item">
+              <ScrollTo toId="home" toRef={undefined} duration={1000}>
+                <a className="smoothscroll" href="#home">
+                  Home
+                </a>
+              </ScrollTo>
             </li>
 
-            <li>
-              <a className="smoothscroll" href="#about">
-                About
-              </a>
+            <li className="nav-item">
+              <ScrollTo toId="about" toRef={undefined} duration={1000}>
+                <a className="smoothscroll" href="#about">
+                  About
+                </a>
+              </ScrollTo>
             </li>
 
-            <li>
-              <a className="smoothscroll" href="#resume">
-                Resume
-              </a>
+            <li className="nav-item">
+              <ScrollTo toId="resume" toRef={undefined}>
+                <a className="smoothscroll" href="#resume">
+                  Resume
+                </a>
+              </ScrollTo>
             </li>
 
-            <li>
-              <a className="smoothscroll" href="#portfolio">
-                Works
-              </a>
+            <li className="nav-item">
+              <ScrollTo toId="portfolio" toRef={undefined} duration={1000}>
+                <a className="smoothscroll" href="#portfolio">
+                  Works
+                </a>
+              </ScrollTo>
             </li>
 
-            <li>
-              <a className="smoothscroll" href="#testimonials">
-                Testimonials
-              </a>
+            <li className="nav-item">
+              <ScrollTo toId="testimonials" toRef={undefined} duration={1000}>
+                <a className="smoothscroll" href="#testimonials">
+                  Testimonials
+                </a>
+              </ScrollTo>
             </li>
 
-            <li>
-              <a className="smoothscroll" href="#contact">
-                Contact
-              </a>
+            <li className="nav-item">
+              <ScrollTo toId="contact" toRef={undefined} duration={1000}>
+                <a className="smoothscroll" href="#contact">
+                  Contact
+                </a>
+              </ScrollTo>
             </li>
           </ul>
         </nav>
@@ -85,11 +98,13 @@ class Header extends Component<Props, State> {
           </div>
         </div>
 
-        <p className="scrolldown">
-          <a className="smoothscroll" href="#about">
-            <i className="icon-down-circle"></i>
-          </a>
-        </p>
+        <ScrollTo toId="about" toRef={undefined} duration={1000}>
+          <p className="scrolldown">
+            <a>
+              <i className="icon-down-circle"></i>
+            </a>
+          </p>
+        </ScrollTo>
       </header>
     )
   }
