@@ -17,6 +17,19 @@ type State = {
   observer?: IntersectionObserver
 }
 
+const buildThresholdList = () => {
+  let thresholds = []
+  let numSteps = 20
+
+  for (let i = 1.0; i <= numSteps; i++) {
+    let ratio = i / numSteps
+    thresholds.push(ratio)
+  }
+
+  thresholds.push(0)
+  return thresholds
+}
+
 class App extends Component<Props, State> {
   constructor(props: any) {
     super(props)
@@ -63,7 +76,7 @@ class App extends Component<Props, State> {
 
     const sectionElements = Object.values(sections) as HTMLElement[]
     let ratioByElementId = new Map()
-    // const thresholdList = buildThresholdList()
+    const thresholdList = buildThresholdList()
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -91,9 +104,9 @@ class App extends Component<Props, State> {
         })
       },
       {
-        threshold: [0.2, 0.3, 0.8, 0.9],
+        threshold: thresholdList,
         // only focus on the upper side.
-        rootMargin: '0px 0px -25% 0px',
+        rootMargin: '0px 0px -20% 0px',
       }
     )
     for (const section of sectionElements) {
