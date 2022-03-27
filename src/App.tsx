@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import ReactGA from 'react-ga'
 import './App.css'
 import About from './Components/About'
-import Contact from './Components/Contact'
+//import Contact from './Components/Contact'
 import { ResumeData } from './Components/dataAPI'
 import Footer from './Components/Footer'
 import Header from './Components/Header'
@@ -126,7 +126,7 @@ class App extends Component<Props, State> {
         <Resume data={resumeData.resume} />
         <Portfolio data={resumeData.portfolio} />
         <Testimonials data={resumeData.testimonials} />
-        <Contact data={resumeData.main} />
+        {/* <Contact data={resumeData.main} /> */}
         <Footer data={resumeData.main} />
       </div>
     ) : (

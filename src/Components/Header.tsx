@@ -15,7 +15,7 @@ class Header extends Component<Props, State> {
     const networks = this.props.data.social.map(function (network: any) {
       return (
         <li key={network.name}>
-          <a href={network.url}>
+          <a href={network.url} target="_blank" rel="noopener noreferrer">
             <i className={network.className}></i>
           </a>
         </li>
@@ -74,22 +74,28 @@ class Header extends Component<Props, State> {
               </ScrollTo>
             </li>
 
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <ScrollTo toId="contact" toRef={undefined} duration={1000}>
                 <a className="smoothscroll" href="#contact">
                   Contact
                 </a>
               </ScrollTo>
-            </li>
+            </li> */}
           </ul>
         </nav>
 
         <div className="row banner">
           <div className="banner-text">
-            <h1 className="responsive-headline">I'm {name}.</h1>
+            <h1 className="responsive-headline">I'm {name}</h1>
 
             <h3>
-              I'm a {city} based <span>{occupation}</span>. {description}.
+              I'm a {city} based <span>{occupation}</span> with 5 years of work
+              experience. Thanks <span>Tim Baker </span>
+              for offering this{' '}
+              <a href="https://github.com/tbakerx/react-resume-template">
+                React-Resume-Template
+              </a>
+              . {description}.
             </h3>
 
             <hr />
