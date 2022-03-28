@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "http://localhost:3000/static/css/main.31d6cfe0.css",
-    "main.js": "http://localhost:3000/static/js/main.b57ff4ba.js",
+    "main.js": "http://localhost:3000/static/js/main.7a817f98.js",
     "index.html": "http://localhost:3000/index.html",
-    "main.b57ff4ba.js.map": "http://localhost:3000/static/js/main.b57ff4ba.js.map"
+    "main.7a817f98.js.map": "http://localhost:3000/static/js/main.7a817f98.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.b57ff4ba.js"
+    "static/js/main.7a817f98.js"
   ]
 }
