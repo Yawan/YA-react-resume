@@ -40,7 +40,7 @@ class App extends Component<Props, State> {
   }
 
   getResumeData() {
-    fetch('https://yawan.github.io/react-resume-template/resumeData.json', {
+    fetch('https://yawan.github.io/YA-react-resume/resumeData.json', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
