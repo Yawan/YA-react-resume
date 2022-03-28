@@ -1,4 +1,4 @@
-name: Jekyll site CI
+name: Auto deploy gh-pages
 
 on:
   push:
@@ -18,9 +18,27 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the site in the jekyll/builder container
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install
       run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+        npm install
+    - name: npm run build
+      run: |
+        npm run build
+    - name: Commit files
+      run: |
+        cd $PUBLISH_DIR
+        git init
+        git config --local user.name $USER_NAME
+        git config --local user.email $USER_EMAIL
+        git status
+        git remote add origin https://$MY_SECRET@github.com/$GITHUB_REPOSITORY.git
+        git checkout -b gh-pages
+        git add --all
+        git commit -m "deploy to Github pages"
+        git push origin gh-pages -f
+        echo 🤘 deploy gh-pages complete.
