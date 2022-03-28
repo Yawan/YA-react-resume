@@ -15,7 +15,7 @@ class Footer extends Component<Props, State> {
     const socialLinks = social.map((network: SocialInfoProps) => {
       return (
         <li key={network.name}>
-          <a href={network.url}>
+          <a href={network.url} target="_blank" rel="noopener noreferrer">
             <i className={network.className}></i>
           </a>
         </li>

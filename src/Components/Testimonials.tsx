@@ -28,12 +28,26 @@ class Testimonials extends Component<Props> {
           <div className="row">
             <div className="two columns header-col">
               <h1>
-                <span>Client Testimonials</span>
+                <span>Testimonials</span>
               </h1>
             </div>
 
             <div className="ten columns flex-container">
               <ul className="slides">{renderTestimonials}</ul>
+            </div>
+            <div className="columns download">
+              <p>
+                <a
+                  href={
+                    'https://drive.google.com/file/d/1K1Ao3IWP1OosZuz8MYhE_XpC6A0dSLej/view?usp=sharing'
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button"
+                >
+                  <i className="fa fa-download"></i>View more information
+                </a>
+              </p>
             </div>
           </div>
         </div>

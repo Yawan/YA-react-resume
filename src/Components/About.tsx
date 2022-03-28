@@ -22,7 +22,7 @@ class About extends Component<Props, State> {
             <img
               className="profile-pic"
               src={profilepic}
-              alt="Tim Baker Profile Pic"
+              alt="Joe Profile Picture"
             />
           </div>
 
@@ -48,9 +48,9 @@ class About extends Component<Props, State> {
 
                   <br />
 
-                  <span>{phone}</span>
+                  {/* <span>{phone}</span>
 
-                  <br />
+                  <br /> */}
 
                   <span>{email}</span>
                 </p>
