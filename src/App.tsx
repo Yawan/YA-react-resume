@@ -17,9 +17,11 @@ type State = {
   observer?: IntersectionObserver
 }
 
+type RatioElementRecord = Record<string, number>
+
 const buildThresholdList = () => {
-  let thresholds = []
-  let numSteps = 20
+  const thresholds = []
+  const numSteps = 10
 
   for (let i = 1.0; i <= numSteps; i++) {
     let ratio = i / numSteps
@@ -73,40 +75,36 @@ class App extends Component<Props, State> {
   private initObserver() {
     const navItems = document.querySelectorAll('.nav-item')
     const sections = document.querySelector('.App')!.childNodes
-
     const sectionElements = Object.values(sections) as HTMLElement[]
-    let ratioByElementId = new Map()
+    const ratioBySectionId: RatioElementRecord = {}
     const thresholdList = buildThresholdList()
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          let prevRatio = ratioByElementId.get(entry.target.id) || 0
-          entry.target.id &&
-            ratioByElementId.set(entry.target.id, entry.intersectionRatio)
+          ratioBySectionId[entry.target.id] = entry.intersectionRatio
 
-          // the ratio is increasing and more then 20% of rootMargin
-          if (
-            entry.intersectionRatio > prevRatio &&
-            entry.intersectionRatio > 0.2
-          ) {
-            const currentSection = entry.target
-            const currentIndex = sectionElements?.findIndex(
-              (el) => el === currentSection
-            )
+          // find max intersection with reduce comparer
+          const idWithMaxRatio = Object.keys(ratioBySectionId).reduce((a, b) =>
+            ratioBySectionId[a] > ratioBySectionId[b] ? a : b
+          )
 
-            // update the status of navbar.
-            navItems.forEach((navItem, index) => {
-              index === currentIndex
-                ? navItem.classList.toggle('current', true)
-                : navItem.classList.toggle('current', false)
-            })
-          }
+          // get the section element and set currentIndex.
+          const currentSection = document.getElementById(idWithMaxRatio)
+          const currentIndex = sectionElements?.findIndex(
+            (el) => el === currentSection
+          )
+          // use the currentIndex to update the status of navbar.
+          navItems.forEach((navItem, index) => {
+            index === currentIndex
+              ? navItem.classList.toggle('current', true)
+              : navItem.classList.toggle('current', false)
+          })
         })
       },
       {
         threshold: thresholdList,
         // only focus on the upper side.
-        rootMargin: '0px 0px -20% 0px',
+        rootMargin: '-5% 0px -35% 0px',
       }
     )
     for (const section of sectionElements) {
