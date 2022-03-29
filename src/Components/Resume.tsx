@@ -9,9 +9,9 @@ class Resume extends Component<Props> {
     const { data } = this.props
     const { skillmessage, education: educations, work: works } = data
 
-    const EducationComponent = educations.map((edu) => {
+    const EducationComponent = educations.map((edu, index) => {
       return (
-        <div key={edu.school}>
+        <div key={index}>
           <h3>{edu.school}</h3>
 
           <p className="info">
