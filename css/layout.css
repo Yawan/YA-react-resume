@@ -234,6 +234,12 @@ ul#nav li.current a {
   line-height: 30px;
   color: #7a7a7a;
 }
+#about p::selection,span::selection {
+  background-color: aliceblue;
+}
+#about p::-moz-selection,span::-moz-selection {
+  background-color: aliceblue;
+}
 #about .profile-pic {
   position: relative;
   width: 150px;
