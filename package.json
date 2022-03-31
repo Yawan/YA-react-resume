@@ -2,7 +2,7 @@
   "name": "personalportfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Yawan.github.io/YA-react-resume/",
+  "homepage": "https://Yawan.github.io/YA-react-resume",
   "dependencies": {
     "gh-pages": "^3.2.3",
     "react": "^16.2.0",
