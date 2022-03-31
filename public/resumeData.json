@@ -2,20 +2,20 @@
   "main": {
     "name": "Yaw-An Shieh",
     "occupation": "Software Engineer",
-    "description": "I convert it into a Typescript version and stop the jQuery library here, and hope this will help you to know me more",
+    "description": "I converted it to the Typescript version and stopped using the jQuery library here, and I hope this website will help you know more about me.",
     "image": "profile.jpg",
-    "bio": "Hello there, I am a man who loves to solve problems and might forget to get his meal. My favorite sport is snowboarding although I live on an island with a subtropical climate, where is rare to see the snow.",
+    "bio": "Hello, I am a man who loves to solve problems and might forget to get his meal. My favorite sport is snowboarding, although I live on an island with a subtropical climate and rarely see snow. In the era of booming online courses, I am fortunate to learn lots of skills and keep moving up. Lately, I have finished some web development courses on Udemy and Youtube. I hope to have the opportunity to work with you in the future. Thank you.",
     "contactMessage": "Here is where you should write your message to readers to have them get in contact with you.",
     "email": "b97502027@gmail.com",
     "phone": "",
     "address": {
       "street": "",
-      "city": "New Taipei City",
+      "city": "Taipei",
       "state": "Taiwan",
       "zip": "23546"
     },
-    "website": "http://www.timbakerdev.com",
-    "resumedownload": "http://timbakerdev.com",
+    "website": "",
+    "resumeDownload": "https://drive.google.com/file/d/1-XR0uatrdEGnm-BmZL6DYuSRERFFqhPn/view?usp=sharing",
     "social": [
       {
         "name": "facebook",
@@ -35,7 +35,7 @@
     ]
   },
   "resume": {
-    "skillmessage": "Here you can create a short write-up of your skills to show off to employers",
+    "skillmessage": "",
     "education": [
       {
         "school": "National Taiwan University",
@@ -55,13 +55,13 @@
         "company": "Getac Technology Corporation",
         "title": "Software Engineer",
         "years": "August 2019 - August 2021",
-        "description": "Took over and maintained the performance evaluation web application, developed new features in .Net, C# MVC, Vuejs with Bootstrap. It also meant I am worthy of trust for keeping confidential information."
+        "description": "I took over and maintained the internal web application, such as the performance evaluation system, developed new features in .Net, C# MVC, Vuejs with Bootstrap. It was my first time working on a web application. I found everything was new and fascinating to make interfaces more friendly and manipulatable. Therefore, I started to devote myself to front-end development."
       },
       {
         "company": "Pegatron Corporation",
         "title": "Software/Firmware Engineer",
         "years": "January 2016 - April 2019",
-        "description": "I participated in almost all automation projects then, and I was responsible for image process algorithms such as blemish inspection and image quality checking for lens modules. Provided reliable quality control instead of subjective judgments on defect inspections."
+        "description": "I participated in almost all automation projects then, and I was responsible for image process algorithms such as blemish inspection and image quality checking for lens modules. It made quality control more reliable instead of subjective judgments on product inspections. As for battery charger design, the firmware development experience gave me a chance to know how an MCU works. It also allowed me to implement a state machine design to control charging behavior."
       }
     ],
     "skills": [
