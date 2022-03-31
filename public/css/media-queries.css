@@ -61,6 +61,8 @@
    ------------------------------------------------------------------- */
    #resume h1 { font: 16px/24px 'opensans-bold', sans-serif; }
    #resume .main-col { padding-right: 5%; }   
+ 
+
 
    /* Testimonials Section
    ------------------------------------------------------------------- */
@@ -235,6 +237,9 @@
    #resume .main-col { padding-right: 30px; }
    #resume h3, #resume .info { text-align: center; }
       
+   #resume .card{
+    flex: 0 1 48%;
+   }
    .bars { width: 100%; }
 
 
@@ -371,12 +376,3 @@
    footer .social-links li { margin-left: 14px; }   
 
 }
-
-
-
-
-
-
-
-
-

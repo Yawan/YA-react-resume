@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Card from './Card'
 import { ResumeProps, Skill } from './dataAPI'
 
 type Props = {
@@ -9,9 +10,9 @@ class Resume extends Component<Props> {
     const { data } = this.props
     const { skillmessage, education: educations, work: works } = data
 
-    const EducationComponent = educations.map((edu) => {
+    const EducationComponent = educations.map((edu, index) => {
       return (
-        <div key={edu.school}>
+        <div key={index}>
           <h3>{edu.school}</h3>
 
           <p className="info">
@@ -38,13 +39,14 @@ class Resume extends Component<Props> {
       )
     })
     const renderSkills = data.skills.map((skill: Skill) => {
-      var className = 'bar-expand ' + skill.name.toLowerCase()
-
+      const path = 'images/' + skill.img
       return (
-        <li key={skill.name}>
-          <span style={{ width: skill.level }} className={className}></span>
-          <em>{skill.name}</em>
-        </li>
+        <Card
+          img={path}
+          description={skill.alt}
+          title={skill.name}
+          key={skill.name}
+        ></Card>
       )
     })
 
@@ -59,6 +61,15 @@ class Resume extends Component<Props> {
 
           <div className="nine columns main-col">{WorkComponent}</div>
         </div>
+        <div className="row skill">
+          <div className="three columns header-col">
+            <h1>
+              <span>Skills</span>
+            </h1>
+          </div>
+
+          <div className="twelve card-container">{renderSkills}</div>
+        </div>
         <div className="row education">
           <div className="three columns header-col">
             <h1>
@@ -69,21 +80,6 @@ class Resume extends Component<Props> {
           <div className="nine columns main-col">
             <div className="row item">
               <div className="twelve columns">{EducationComponent}</div>
-            </div>
-          </div>
-        </div>
-        <div className="row skill">
-          <div className="three columns header-col">
-            <h1>
-              <span>Skills</span>
-            </h1>
-          </div>
-
-          <div className="nine columns main-col">
-            <p>{skillmessage}</p>
-
-            <div className="bars">
-              <ul className="skills">{renderSkills}</ul>
             </div>
           </div>
         </div>

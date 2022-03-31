@@ -15,7 +15,7 @@ class Testimonials extends Component<Props> {
             <blockquote>
               <p>{testimonials.text}</p>
 
-              <cite>{testimonials.user}</cite>
+              <cite> {testimonials.user}</cite>
             </blockquote>
           </li>
         )
@@ -45,7 +45,7 @@ class Testimonials extends Component<Props> {
                   rel="noopener noreferrer"
                   className="button"
                 >
-                  <i className="fa fa-download"></i>View more information
+                  <i className="fa fa-download"></i>View more
                 </a>
               </p>
             </div>
