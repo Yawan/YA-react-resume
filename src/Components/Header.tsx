@@ -90,12 +90,12 @@ class Header extends Component<Props, State> {
 
             <h3>
               I'm a {city} based <span>{occupation}</span> with 5 years of work
-              experience. Thanks <span>Tim Baker </span>
+              experience. Thanks to <span>Tim Baker </span>
               for offering this{' '}
               <a href="https://github.com/tbakerx/react-resume-template">
                 React-Resume-Template
               </a>
-              . {description}.
+              . {description}
             </h3>
 
             <hr />
