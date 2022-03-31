@@ -52,7 +52,9 @@ class About extends Component<Props, State> {
 
                   <br /> */}
 
-                  <span>{email}</span>
+                  <span>
+                    <a href={`mailto:${email}`}>{email}</a>
+                  </span>
                 </p>
               </div>
 

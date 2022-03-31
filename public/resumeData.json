@@ -66,29 +66,45 @@
     ],
     "skills": [
       {
-        "name": "ReactJs",
-        "level": "70%"
+        "name": "Git",
+        "img": "git_icon.svg",
+        "alt": "git-icon"
       },
       {
-        "name": "Git",
-        "level": "70%"
+        "name": "HTML",
+        "img": "html5_icon.svg",
+        "alt": "html5-icon"
+      },
+      {
+        "name": "CSS",
+        "img": "css3_icon.svg",
+        "alt": "css3-icon"
+      },
+      {
+        "name": "JavaScript",
+        "img": "js_icon.svg",
+        "alt": "js-icon"
+      },
+      {
+        "name": "ReactJs",
+        "img": "react_icon.svg",
+        "alt": "react-icon"
+      },
+      {
+        "name": "TypeScript",
+        "img": "typescript_icon.svg",
+        "alt": "typescript-icon"
       },
       
       {
-        "name": "CSS",
-        "level": "80%"
-      },
-      {
-        "name": "HTML5",
-        "level": "80%"
-      },
-      {
-        "name": "VueJs",
-        "level": "50%"
+        "name": "Bootstrap",
+        "img": "bootstrap_icon.svg",
+        "alt": "bootstrap-icon"
       },
       {
         "name": "C#",
-        "level": "80%"
+        "img": "c_sharp_icon.svg",
+        "alt": "c_sharp-icon"
       }
     ]
   },

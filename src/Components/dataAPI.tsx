@@ -34,10 +34,10 @@ export type PortfolioProps = {
   projects: Project[]
 }
 
-//todo: check if level is necessary
 export type Skill = {
   name: string
-  level: string
+  img: string
+  alt: string
 }
 
 type Works = {

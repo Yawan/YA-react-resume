@@ -151,6 +151,7 @@ body {
 
    -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 	-webkit-text-size-adjust: 100%;
+   min-width: 390px;
 }
 
 /*  2. Typography
