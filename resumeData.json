@@ -16,8 +16,7 @@
     },
     "website": "",
     "resumeDownload": "https://drive.google.com/file/d/1-XR0uatrdEGnm-BmZL6DYuSRERFFqhPn/view?usp=sharing",
-    "social": [
-      {
+    "social": [{
         "name": "facebook",
         "url": "https://www.facebook.com/aquariusans",
         "className": "fa fa-facebook"
@@ -36,8 +35,7 @@
   },
   "resume": {
     "skillmessage": "",
-    "education": [
-      {
+    "education": [{
         "school": "National Taiwan University",
         "degree": "Masters in Mechanical Engineering",
         "graduated": "July 2014",
@@ -50,8 +48,7 @@
         "description": ""
       }
     ],
-    "work": [
-      {
+    "work": [{
         "company": "Getac Technology Corporation",
         "title": "Software Engineer",
         "years": "August 2019 - August 2021",
@@ -64,7 +61,26 @@
         "description": "I participated in almost all automation projects then, and I was responsible for image process algorithms such as blemish inspection and image quality checking for lens modules. It made quality control more reliable instead of subjective judgments on product inspections. As for battery charger design, the firmware development experience gave me a chance to know how an MCU works. It also allowed me to implement a state machine design to control charging behavior."
       }
     ],
-    "skills": [
+    "skills": [{
+        "name": "ReactJs",
+        "img": "react_icon.svg",
+        "alt": "react-icon"
+      },
+      {
+        "name": "TypeScript",
+        "img": "typescript_icon.svg",
+        "alt": "typescript-icon"
+      },
+      {
+        "name": "C#",
+        "img": "c_sharp_icon.svg",
+        "alt": "c_sharp-icon"
+      },
+      {
+        "name": "Bootstrap",
+        "img": "bootstrap_icon.svg",
+        "alt": "bootstrap-icon"
+      },
       {
         "name": "Git",
         "img": "git_icon.svg",
@@ -84,33 +100,11 @@
         "name": "JavaScript",
         "img": "js_icon.svg",
         "alt": "js-icon"
-      },
-      {
-        "name": "ReactJs",
-        "img": "react_icon.svg",
-        "alt": "react-icon"
-      },
-      {
-        "name": "TypeScript",
-        "img": "typescript_icon.svg",
-        "alt": "typescript-icon"
-      },
-      
-      {
-        "name": "Bootstrap",
-        "img": "bootstrap_icon.svg",
-        "alt": "bootstrap-icon"
-      },
-      {
-        "name": "C#",
-        "img": "c_sharp_icon.svg",
-        "alt": "c_sharp-icon"
       }
     ]
   },
   "portfolio": {
-    "projects": [
-      {
+    "projects": [{
         "title": "Resume Website using Typescript",
         "category": "A React based resume website template",
         "image": "resume-website.jpg",
@@ -130,11 +124,9 @@
       }
     ]
   },
-  "testimonials": [
-    {
-      "text": "I have had the good fortune to have worked with Yaw-An Shieh over the past 3 years in my capacity of Associate Vice President of Software Engineering at PEGATRON Corporation. During this time    Yaw-An has demonstrated deep multi-disciplinary expertise in firmware development and software integration.",
-      "user": "Jing-Rung Wang"
-    }
-  ]
-  
+  "testimonials": [{
+    "text": "I have had the good fortune to have worked with Yaw-An Shieh over the past 3 years in my capacity of Associate Vice President of Software Engineering at PEGATRON Corporation. During this time    Yaw-An has demonstrated deep multi-disciplinary expertise in firmware development and software integration.",
+    "user": "Jing-Rung Wang"
+  }]
+
 }
