@@ -4,7 +4,7 @@
     "occupation": "Software Engineer",
     "description": "I converted it to the Typescript version and stopped using the jQuery library here, and I hope this website will help you know more about me.",
     "image": "profile.jpg",
-    "bio": "Hello, I am a man who loves to solve problems and might forget to get his meal. My favorite sport is snowboarding, although I live on an island with a subtropical climate and rarely see snow. In the era of booming online courses, I am fortunate to learn lots of skills and keep moving up. Lately, I have finished some web development courses on Udemy and Youtube. I hope to have the opportunity to work with you in the future. Thank you.",
+    "bio": "Hello, I am a man who loves to solve problems. I recently have completed a React + TypeScript web development course. Not only did I practice converting a legacy project from JavaScript-based to TypeScript-based, but I also practiced converting class components to functional components using Hooks. I also have finished several projects using the CSS-in-JS library or SASS to familiarize myself with these skills. Storybook or GraphQL might be coming topics I'd like to dig in.",
     "contactMessage": "Here is where you should write your message to readers to have them get in contact with you.",
     "email": "b97502027@gmail.com",
     "phone": "",
