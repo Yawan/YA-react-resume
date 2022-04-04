@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "https://yawan.github.io/YA-react-resume/static/css/main.31d6cfe0.css",
-    "main.js": "https://yawan.github.io/YA-react-resume/static/js/main.52b4488a.js",
+    "main.js": "https://yawan.github.io/YA-react-resume/static/js/main.4f629b31.js",
     "index.html": "https://yawan.github.io/YA-react-resume/index.html",
-    "main.52b4488a.js.map": "https://yawan.github.io/YA-react-resume/static/js/main.52b4488a.js.map"
+    "main.4f629b31.js.map": "https://yawan.github.io/YA-react-resume/static/js/main.4f629b31.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.52b4488a.js"
+    "static/js/main.4f629b31.js"
   ]
 }
