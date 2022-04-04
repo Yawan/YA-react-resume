@@ -38,7 +38,7 @@ export default function register() {
         checkValidServiceWorker(swUrl)
       } else {
         // Is not local host. Just register service worker
-        registerValidSW(swUrl)
+        // registerValidSW(swUrl)
       }
     })
   }
