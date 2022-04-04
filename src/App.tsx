@@ -114,7 +114,7 @@ class App extends Component<Props, State> {
   }
 
   render() {
-    console.log('render', this.state)
+    // console.log('render', this.state)
     const { resumeData } = this.state
 
     return resumeData ? (
